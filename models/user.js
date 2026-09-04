@@ -13,7 +13,6 @@ const userSchema = new Schema({
     },
     salt: {
         type: String,
-        required: true,
     },
     password: {
         type: String,
@@ -30,7 +29,7 @@ const userSchema = new Schema({
     }
 }, { timestamps: true });
 
-userSchema.pre("save", function (next) {
+userSchema.pre("save", async function () {
     const user = this
 
     if (!user.isModified("password")) return next();
@@ -39,8 +38,6 @@ userSchema.pre("save", function (next) {
     const hashedPassword = createHmac('sha256', salt).update(user.password).digest("hex")
     user.salt = salt
     user.password = hashedPassword
-
-    next()
 })
 
 const User = model("user", userSchema);
