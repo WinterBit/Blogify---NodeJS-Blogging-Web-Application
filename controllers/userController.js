@@ -7,6 +7,14 @@ async function handleCreateUser(req, res) {
     return res.redirect("/")
 }
 
+async function handleSignIn(req, res) {
+    const { email, password } = req.body
+    const user = await User.matchPassword(email, password)
+    console.log(user)
+    res.redirect("/")
+}
+
 module.exports = {
     handleCreateUser,
+    handleSignIn,
 }

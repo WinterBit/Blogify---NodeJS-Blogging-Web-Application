@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
-const { randomBytes, createHmac } = require("crypto")
+const { randomBytes, createHmac } = require("crypto");
+const { error } = require("console");
 
 const userSchema = new Schema({
     fullName: {
@@ -38,6 +39,19 @@ userSchema.pre("save", async function () {
     const hashedPassword = createHmac('sha256', salt).update(user.password).digest("hex")
     user.salt = salt
     user.password = hashedPassword
+})
+
+userSchema.static("matchPassword", async function (email, password) {
+    const user = await this.findOne({ email });
+    if (!user) throw new  Error("User Not Found!")
+
+    const salt = user.salt;
+    const hashedPassword = user.password
+    const ProvidedPassword = createHmac('sha256', salt).update(password).digest("hex")
+
+    if (hashedPassword !== ProvidedPassword) throw new  Error("Email or password didn't matched")
+
+    return user;
 })
 
 const User = model("user", userSchema);
