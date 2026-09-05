@@ -7,21 +7,30 @@
 </head>
 
 <body>
-    <div class="container mt-5">
-        <form action="/user/signin" method="POST">
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" name="email" class="form-control" id="exampleInputEmail1"
-                    aria-describedby="emailHelp">
+    <%- include("./partials/nav") %>
+        <div class="container mt-5">
+            <div class="message">
+                <% if (locals.error) {%>
+                    <div class="alert alert-danger" role="alert">
+                        <%= locals.error %>
+                    </div>
+                    <%} %>
             </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" name="password" class="form-control" id="exampleInputPassword1">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
-    <%- include("./partials/script") %>
+
+            <form action="/user/signin" method="POST">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" name="email" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <%- include("./partials/script") %>
 </body>
 
 </html>
