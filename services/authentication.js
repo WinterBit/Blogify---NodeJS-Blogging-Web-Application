@@ -5,6 +5,7 @@ const secret = "$ecter_Key@123"
 function createTokenForUser(user) {
     const payload = {
         _id: user._id,
+        name: user.fullName,
         email: user.email,
         role: user.role,
         profileImageURL: user.profileImageURL
