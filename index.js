@@ -1,9 +1,12 @@
 const path = require("path")
 const express = require("express")
 const mongoose = require("mongoose")
-const userRoute = require("./routes/userRoute")
 const cookieParser = require("cookie-parser")
+
 const { checkForAuthenticationCookie } = require("./middleware/authenticationMiddleware")
+
+const userRoute = require("./routes/userRoute")
+const blogRoute = require("./routes/blogRoute")
 
 const app = express()
 const PORT = 3000
@@ -27,6 +30,7 @@ app.get("/", (req, res) => {
 })
 
 app.use("/user", userRoute)
+app.use("/blog",blogRoute)
 
 app.listen(PORT, () => {
     console.log("Server is running at PORT : ", PORT)

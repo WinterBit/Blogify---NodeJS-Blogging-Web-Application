@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("./partials/head") %>
+        <title>Add Blog</title>
+</head>
+
+<body>
+    <%- include("./partials/nav") %>
+        <div class="container mt-5">
+            <form action="/blog/add-new" method="post">
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" id="coverImage" name="coverImage">
+                    <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Title</span>
+                    <input type="text" name="title" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-text">Body</span>
+                    <textarea class="form-control" aria-label="With textarea" style="height: 150px"></textarea>
+                </div>
+            </form>
+        </div>
+        <%- include("./partials/script") %>
+</body>
+
+</html>
