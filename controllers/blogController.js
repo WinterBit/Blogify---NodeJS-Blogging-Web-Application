@@ -11,6 +11,16 @@ async function handleCreateBlog(req, res) {
     res.redirect(`/blog/${blog._id}`)
 }
 
+async function handleViewBlog(req,res) {
+    const blog = await Blog.findById(req.params.id).populate("createdBy")
+    console.log(blog)
+    return res.render("blog",{
+        user:req.user,
+        blog,
+    })
+}
+
 module.exports = {
     handleCreateBlog,
+    handleViewBlog,
 }

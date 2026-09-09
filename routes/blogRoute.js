@@ -2,7 +2,7 @@ const { Router } = require("express")
 const multer = require("multer")
 const path = require("path")
 
-const { handleCreateBlog } = require("../controllers/blogController")
+const { handleCreateBlog, handleViewBlog } = require("../controllers/blogController")
 
 const router = Router()
 
@@ -23,6 +23,8 @@ router.get("/add-new", (req, res) => {
         user: req.user,
     })
 })
+
+router.get("/:id", handleViewBlog)
 
 router.post("/", upload.single("coverImage"), handleCreateBlog)
 

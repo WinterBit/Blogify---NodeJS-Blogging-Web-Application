@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("./partials/head") %>
+        <title>Blog</title>
+</head>
+
+<body>
+    <%- include("./partials/nav") %>
+        <div class="container m-5">
+            <h3 class="blog-title">
+                <%= blog.title %>
+            </h3>
+            <img src="<%= blog.coverImageURL %>" class="blog-cover" alt="Cover Image" style="width: 30vw;">
+            <pre class="blog-body"><%= blog.body %></pre>
+            <div class="blog-author d-flex">
+                <img src="<%= blog.createdBy.profileImageURL %>" alt="User's Image" style="width: 45px;">
+                <p class="align-self-end"><%= blog.createdBy.fullName %></p>
+            </div>
+        </div>
+        <%- include("./partials/script") %>
+</body>
+
+</html>
